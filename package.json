@@ -1,9 +1,22 @@
 {
     "name": "gulp-fncallback",
     "version": "1.0.3",
-    "description": "",
+    "description": "gulp-fncallback",
     "license": "MIT",
-    "repository": "itgalaxy-company/gulp-fncallback",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/itgalaxy-company/gulp-fncallback"
+    },
+    "bugs": {
+        "url": "https://github.com/itgalaxy-company/gulp-fncallback/issues"
+    },
+    "homepage": "https://github.com/itgalaxy-company/gulp-fncallback",
+    "maintainers": [
+        {
+            "name": "itgalaxy",
+            "email": "info@itgalaxy.company"
+        }
+    ],
     "author": {
         "name": "Alexander Krasnoyarov",
         "email": "info@itgalaxy.company",
@@ -28,7 +41,6 @@
     "dependencies": {
         "through2": "~0.6.3",
         "gulp-util": "~3.0.1",
-        "lodash.defaults": "~2.4.1"
     },
     "devDependencies": {
         "mocha": "*",
