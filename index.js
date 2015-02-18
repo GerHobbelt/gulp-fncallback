@@ -14,8 +14,6 @@ const PLUGIN_NAME = 'gulp-callback';
 // which the userland code may use to signal that the default `gulp-callback` action (copying the
 // processed chunk verbatim) is to be skipped.
 module.exports = function (transformFunction, flushFunction, options) {
-    var plugin = this;
-
     // `transformFunction` is optional
     if (typeof transformFunction !== 'function' && transformFunction) {
         throw new PluginError(PLUGIN_NAME, 'transformFunction callback is not a function');
@@ -44,8 +42,6 @@ module.exports = function (transformFunction, flushFunction, options) {
         // See for what's inside here: https://github.com/rvagg/through2#api
         objectMode: true
     };
-
-    plugin.options = options;
 
     return through(streamOptions, function (file, enc, cb) {
         // Pass file through if:
@@ -81,13 +77,17 @@ module.exports = function (transformFunction, flushFunction, options) {
         };
 
         if (!once && transformFunction) {
-            return transformFunction.call(this, file, enc, callback, plugin);
+            return transformFunction.call(this, file, enc, callback, {
+                options: options
+            });
         } else {
             cb();
         }
     }, function (cb) {
         if (flushFunction) {
-            return flushFunction.call(this, cb, plugin);
+            return flushFunction.call(this, cb, {
+                options: options
+            });
         } else {
             cb();
         }
