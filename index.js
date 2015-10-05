@@ -1,6 +1,7 @@
 var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
+var lodash = require('lodash');
 
 const PLUGIN_NAME = 'gulp-callback';
 
@@ -14,12 +15,18 @@ const PLUGIN_NAME = 'gulp-callback';
 // which the userland code may use to signal that the default `gulp-callback` action (copying the
 // processed chunk verbatim) is to be skipped.
 module.exports = function (transformFunction, flushFunction, options) {
+
+    if (!transformFunction && !flushFunction) {
+        throw new PluginError(PLUGIN_NAME, 'You have specified neither a valid transformFunction callback function nor a valid flushFunction callback function');
+    }
+
     // `transformFunction` is optional
-    if (typeof transformFunction !== 'function' && transformFunction) {
+    if (transformFunction && typeof transformFunction !== 'function') {
         throw new PluginError(PLUGIN_NAME, 'transformFunction callback is not a function');
     }
+
     // `flushFunction` is optional
-    if (typeof flushFunction !== 'function' && flushFunction) {
+    if (flushFunction && typeof flushFunction !== 'function') {
         if (!options && typeof flushFunction === 'object') {
             options = flushFunction;
             flushFunction = null;
@@ -27,34 +34,35 @@ module.exports = function (transformFunction, flushFunction, options) {
             throw new PluginError(PLUGIN_NAME, 'flushFunction callback is not a function');
         }
     }
-    // yet at least either of the callbacks MUST have been specified
-    if (!transformFunction && !flushFunction) {
-        throw new PluginError(PLUGIN_NAME, 'You have specified neither a valid transformFunction callback function nor a valid flushFunction callback function');
-    }
+
     // `options` is optional
     if (options && typeof options !== 'object') {
         throw new PluginError(PLUGIN_NAME, 'options is not an options object');
     }
 
-    options = options || {};
-    var once = false;
-    var streamOptions = options.streamOptions = options.streamOptions || {
+    options = lodash.defaults(options || {}, {
+        once: false
+    });
+    var fireOnce = false;
+    var streamOptions = options.streamOptions = lodash.defaults(options.streamOptions || {}, {
         // See for what's inside here: https://github.com/rvagg/through2#api
         objectMode: true
-    };
+    });
 
-    return through(streamOptions, function (file, enc, cb) {
+    return through(streamOptions, function (file, enc, callback) {
+        var self = this;
+
         // Pass file through if:
         // - file has no contents
         // - file is a directory
         if (file.isNull() || file.isDirectory()) {
             this.push(file);
-            return cb();
+            return callback();
         }
 
         // we dont do streams (yet)
         if (file.isStream()) {
-          return this.emit('error', new PluginError(PLUGIN_NAME, 'Streaming not supported'));
+            return this.emit('error', new PluginError(PLUGIN_NAME, 'Streaming not supported'));
         }
 
         // This extends the `callback` function interface compared to
@@ -62,34 +70,38 @@ module.exports = function (transformFunction, flushFunction, options) {
         // 
         // See also the note further above where this gulp plugin's options
         // are described.
-        var callback = function (err, chunk, doNotCopy) {
-            once = options.once;
+        var transformСallback = function (error, newFile, append) {
+            if (options.once) {
+                fireOnce = true;
+            }
 
-            if (!err && !chunk) {
-                if (doNotCopy) {
-                    cb();
+            if (!error) {
+                if (newFile) {
+                    self.push(newFile);
+
+                    if (append) {
+                        self.push(file);
+                    }
+
+                    callback();
                 } else {
-                    cb(null, file);
+                    callback(null, file);
                 }
             } else {
-                cb(err, chunk);
+                return self.emit('error', new PluginError(PLUGIN_NAME, error));
             }
         };
 
-        if (!once && transformFunction) {
-            return transformFunction.call(this, file, enc, callback, {
-                options: options
-            });
+        if (!fireOnce && transformFunction) {
+            transformFunction.call(this, file, enc, transformСallback, options);
         } else {
-            cb();
+            callback(null, file);
         }
-    }, function (cb) {
+    }, function (callback) {
         if (flushFunction) {
-            return flushFunction.call(this, cb, {
-                options: options
-            });
+            flushFunction.call(this, callback, options);
         } else {
-            cb();
+            callback();
         }
     });
 };
