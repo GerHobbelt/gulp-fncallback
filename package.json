@@ -3,14 +3,11 @@
   "version": "2.0.3-2",
   "description": "Callback for streams",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/itgalaxy-company/gulp-fncallback"
-  },
+  "repository": "itgalaxy/gulp-fncallback",
   "bugs": {
-    "url": "https://github.com/itgalaxy-company/gulp-fncallback/issues"
+    "url": "https://github.com/itgalaxy/gulp-fncallback/issues"
   },
-  "homepage": "https://github.com/itgalaxy-company/gulp-fncallback",
+  "homepage": "https://github.com/itgalaxy/gulp-fncallback",
   "maintainers": [
     {
       "name": "itgalaxy",
@@ -39,16 +36,16 @@
     "functions"
   ],
   "dependencies": {
-    "gulp-util": "~3.0.6",
-    "through2": "~2.0.0",
-    "lodash": "~3.10.1"
+    "gulp-util": "3.0.6",
+    "through2": "2.0.0",
+    "lodash": "3.10.1"
   },
   "devDependencies": {
     "mocha": "2.3.3",
     "should": "7.1.0",
     "vinyl": "1.0.0",
     "event-stream": "3.3.1",
-    "istanbul": "~0.3.22",
-    "coveralls": "~2.11.4"
+    "istanbul": "0.3.22",
+    "coveralls": "2.11.4"
   }
 }
