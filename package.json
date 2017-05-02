@@ -1,6 +1,6 @@
 {
   "name": "gulp-fncallback",
-  "version": "2.0.3-2",
+  "version": "2.0.3-3",
   "description": "Callback for streams",
   "license": "MIT",
   "repository": "itgalaxy/gulp-fncallback",
