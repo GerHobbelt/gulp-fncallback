@@ -23,7 +23,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha test"
+    "test": "node_modules/.bin/mocha test",
+    "cover": "rm -rf ./coverage && istanbul cover ./node_modules/mocha/bin/_mocha"
   },
   "files": [
     "index.js"
@@ -36,16 +37,16 @@
     "functions"
   ],
   "dependencies": {
-    "gulp-util": "3.0.6",
-    "through2": "2.0.0",
-    "lodash": "3.10.1"
+    "gulp-util": "3.0.8",
+    "through2": "2.0.3",
+    "lodash": "4.17.4"
   },
   "devDependencies": {
-    "mocha": "2.3.3",
-    "should": "7.1.0",
-    "vinyl": "1.0.0",
-    "event-stream": "3.3.1",
-    "istanbul": "0.3.22",
-    "coveralls": "2.11.4"
+    "mocha": "3.3.0",
+    "should": "11.2.1",
+    "vinyl": "2.0.2",
+    "event-stream": "3.3.4",
+    "istanbul": "0.4.5",
+    "coveralls": "2.13.1"
   }
 }
