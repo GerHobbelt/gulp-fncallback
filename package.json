@@ -1,54 +1,54 @@
 {
-    "name": "gulp-fncallback",
-    "version": "2.0.2",
-    "description": "Callback for streams",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/itgalaxy-company/gulp-fncallback"
-    },
-    "bugs": {
-        "url": "https://github.com/itgalaxy-company/gulp-fncallback/issues"
-    },
-    "homepage": "https://github.com/itgalaxy-company/gulp-fncallback",
-    "maintainers": [
-        {
-            "name": "itgalaxy",
-            "email": "info@itgalaxy.company"
-        }
-    ],
-    "author": {
-        "name": "Alexander Krasnoyarov",
-        "email": "info@itgalaxy.company",
-        "url": "http://itgalaxy.company"
-    },
-    "engines": {
-        "node": ">=0.10.0"
-    },
-    "scripts": {
-        "test": "node_modules/.bin/mocha test"
-    },
-    "files": [
-        "index.js"
-    ],
-    "keywords": [
-        "gulp",
-        "gulpplugin",
-        "gulpfriendly",
-        "callback",
-        "functions"
-    ],
-    "dependencies": {
-        "gulp-util": "~3.0.6",
-        "through2": "~2.0.0",
-        "lodash": "~3.10.1"
-    },
-    "devDependencies": {
-        "mocha": "2.3.3",
-        "should": "7.1.0",
-        "vinyl": "1.0.0",
-        "event-stream": "3.3.1",
-        "istanbul": "~0.3.22",
-        "coveralls": "~2.11.4"
+  "name": "gulp-fncallback",
+  "version": "2.0.3-2",
+  "description": "Callback for streams",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itgalaxy-company/gulp-fncallback"
+  },
+  "bugs": {
+    "url": "https://github.com/itgalaxy-company/gulp-fncallback/issues"
+  },
+  "homepage": "https://github.com/itgalaxy-company/gulp-fncallback",
+  "maintainers": [
+    {
+      "name": "itgalaxy",
+      "email": "info@itgalaxy.company"
     }
+  ],
+  "author": {
+    "name": "Alexander Krasnoyarov",
+    "email": "info@itgalaxy.company",
+    "url": "http://itgalaxy.company"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha test"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulp",
+    "gulpplugin",
+    "gulpfriendly",
+    "callback",
+    "functions"
+  ],
+  "dependencies": {
+    "gulp-util": "~3.0.6",
+    "through2": "~2.0.0",
+    "lodash": "~3.10.1"
+  },
+  "devDependencies": {
+    "mocha": "2.3.3",
+    "should": "7.1.0",
+    "vinyl": "1.0.0",
+    "event-stream": "3.3.1",
+    "istanbul": "~0.3.22",
+    "coveralls": "~2.11.4"
+  }
 }
