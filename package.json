@@ -20,7 +20,7 @@
     "url": "http://itgalaxy.company"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6.0"
   },
   "scripts": {
     "test": "nyc --reporter=text mocha",
