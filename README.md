@@ -3,8 +3,6 @@ gulp-fncallback
 
 [![npm version](https://badge.fury.io/js/%40gerhobbelt%2Fgulp-fncallback.svg)](https://www.npmjs.com/package/@gerhobbelt/gulp-fncallback)
 [![Build Status](https://travis-ci.org/GerHobbelt/gulp-fncallback.svg?branch=master)](https://travis-ci.org/GerHobbelt/gulp-fncallback)
-[![Coverage Status](https://coveralls.io/repos/github/GerHobbelt/gulp-fncallback/badge.svg?branch=master)](https://coveralls.io/github/GerHobbelt/gulp-fncallback?branch=master)
-[![Greenkeeper badge](https://badges.greenkeeper.io/GerHobbelt/gulp-fncallback.svg)](https://greenkeeper.io/)
 
 Add own callback to streaming
 
